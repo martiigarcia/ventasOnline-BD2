@@ -10,6 +10,9 @@ public class Carrito {
     public Carrito() {
         this.productos = new ArrayList<>();
     }
+    public Carrito(List<Producto> productos) {
+        this.productos =  productos;
+    }
 
     public void setProductos(Producto producto) {
         this.productos.add(
@@ -20,6 +23,13 @@ public class Carrito {
 
     public List<Producto> getProductos() {
         return productos;
+    }
+
+    @Override
+    public String toString() {
+        return "Carrito{" +
+                "productos=" + productos +
+                '}';
     }
 
     public double montoTotal(){

@@ -2,20 +2,25 @@ package modelos;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Venta {
 
     private Date fecha;
     private double montoTotal;
-    private Carrito carrito;
+    private List<Producto> carrito;
     private EstadoVenta estado;
 
-    public Venta(LocalDate fecha, Carrito carrito) {
+    private Cliente cliente;
+
+    public Venta(LocalDate fecha, Carrito carrito, Cliente cliente) {
         this.fecha = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        this.carrito = carrito;
+        this.carrito = new ArrayList<>(carrito.getProductos());
         this.estado = EstadoVenta.PENDIENTE;
+        this.cliente = cliente;
 
     }
     public void ventaCompleta(){
@@ -33,28 +38,29 @@ public class Venta {
     }
 
 
-    public Carrito getCarrito() {
+   /* public Carrito getCarrito() {
         return carrito;
-    }
+    }*/
 
     public void setFecha(LocalDate fecha) {
         this.fecha = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
     public void setMontoTotal(Promocion promocion) {
-        this.montoTotal = promocion.calcularMontoCarrito(carrito);
+        this.montoTotal = promocion.calcularMontoCarrito(new Carrito(carrito));
     }
 
     public double getMontoTotal(){return montoTotal;}
 
-    public void setCarrito(Carrito carrito) {
+    /*public void setCarrito(Carrito carrito) {
         this.carrito = carrito;
-    }
-    public void pagar(){
+    }*/
+    public void pagar(Tarjeta tarjeta){
         // hacer validacion del servicio
-        // if(tiene saldo y esta activa)
+        // if (tiene saldo y esta activa)
         this.ventaCompleta();
-        this.carrito.vaciar();
+        this.cliente.vaciarCarrito();
+        System.out.println("Venta realizada con exito");
     }
 
     @Override
@@ -63,7 +69,7 @@ public class Venta {
                 "fecha=" + fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() +
                 ", montoTotal=" + montoTotal +
                 ", estado=" + estado +
-                ", productos del carrito= [" + carrito.getProductos() +
+                ", productos del carrito= [" + carrito +
                 "]}";
     }
 }

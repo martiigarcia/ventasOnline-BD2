@@ -1,10 +1,8 @@
 package modelos;
 
-import java.net.StandardSocketOptions;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     public static void main(String[] args) {
@@ -71,8 +69,47 @@ public class Main {
         tienda.setPromocion(new promoDeProducto(true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 30), marca1));
         System.out.println(tienda.getPromocion());
 
-        System.out.println("----------Precio venta1: ----------");
-        Venta venta1 = new Venta(LocalDate.now(), cliente1.getCarrito());
+
+
+        Scanner lectura = new Scanner(System.in);
+
+        System.out.println("----------Seleccionar tarjeta: ----------");
+
+        int indice = 0;
+        for (Tarjeta tarjeta: cliente1.getTarjetas()) {
+            System.out.println(indice+"- Numero de tarjeta: " + tarjeta.getNumero());
+            indice++;
+        }
+        System.out.println("Elegir tarjeta: ");
+        int opcion = lectura.nextInt();
+        System.out.println("Opcion elegida: "+opcion+" - Numero de tarjeta: "+cliente1.getTarjetas().get(opcion).getNumero());
+
+        Venta venta1 = new Venta(LocalDate.now(), cliente1.getCarrito(), cliente1);
+        tienda.setVentaList(venta1);
+        venta1.pagar(cliente1.getTarjetas().get(opcion));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*System.out.println("----------Precio venta1: ----------");
+
         venta1.setMontoTotal(new promoDeCompra
                 (true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 30), TipoTarjeta.MP));
         // System.out.println(venta1.getMontoTotal());
@@ -80,15 +117,15 @@ public class Main {
                 true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 30), marca1));
         //   System.out.println(venta1.getMontoTotal());
 
+        venta1.setMontoTotal(tienda.getPromocion().get(0));
+        System.out.println(venta1.getMontoTotal());
 
-        tienda.setVentaList(venta1);
-        System.out.println(tienda);
         venta1.pagar();
+        System.out.println(cliente1.getCarrito());
         System.out.println(venta1);
 
-        System.out.println("----------vaciar carrito: ----------"); //hacer esto desp de pagar
-      //  cliente1.vaciarCarrito(); --> ya lo vacie desde la venta. hacer real
-        System.out.println(cliente1.getCarrito().getProductos());
+
+
 
         // ver validaciones de fechas de promociones
         // hacer una venta con una promocion
@@ -97,6 +134,6 @@ public class Main {
         // ver como se accede a cada parte (si calculo el precio desde la tienda o desde la venta o desde donde, como le paso promociones tmb)
         // ver como se paga, como se selecciona una tarjeta y/o promocion, como funciona el servicio de la tarjeta
 
-
+*/
     }
 }
