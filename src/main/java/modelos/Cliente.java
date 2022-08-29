@@ -54,4 +54,8 @@ public class Cliente {
     public List<Tarjeta> getTarjetas() {
         return tarjetas;
     }
+
+    public void vaciarCarrito(){
+        carrito.vaciar();
+    }
 }

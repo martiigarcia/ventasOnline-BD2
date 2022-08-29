@@ -64,30 +64,39 @@ public class Main {
         System.out.println("----------Tienda: ----------");
         Tienda tienda = new Tienda();
 
-        //ver validaciones de fechas de promociones
-        tienda.setPromocion(new promoDeCompra(true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 29), TipoTarjeta.MP));
+
+        tienda.setPromocion(new promoDeCompra(true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 30), TipoTarjeta.MP));
         System.out.println(tienda.getPromocion());
 
-        tienda.setPromocion(new promoDeProducto(true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 29), marca1));
+        tienda.setPromocion(new promoDeProducto(true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 30), marca1));
         System.out.println(tienda.getPromocion());
 
         System.out.println("----------Precio venta1: ----------");
         Venta venta1 = new Venta(LocalDate.now(), cliente1.getCarrito());
         venta1.setMontoTotal(new promoDeCompra
-                (true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 29), TipoTarjeta.MP));
+                (true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 30), TipoTarjeta.MP));
         // System.out.println(venta1.getMontoTotal());
         venta1.setMontoTotal(new promoDeProducto(
-                true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 29), marca1));
+                true, LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 30), marca1));
         //   System.out.println(venta1.getMontoTotal());
 
 
         tienda.setVentaList(venta1);
         System.out.println(tienda);
+        venta1.pagar();
+        System.out.println(venta1);
 
+        System.out.println("----------vaciar carrito: ----------"); //hacer esto desp de pagar
+      //  cliente1.vaciarCarrito(); --> ya lo vacie desde la venta. hacer real
+        System.out.println(cliente1.getCarrito().getProductos());
+
+        // ver validaciones de fechas de promociones
         // hacer una venta con una promocion
         // guardar las ventas en la tienda
         // calcular monto de cada venta
-        //
+        // ver como se accede a cada parte (si calculo el precio desde la tienda o desde la venta o desde donde, como le paso promociones tmb)
+        // ver como se paga, como se selecciona una tarjeta y/o promocion, como funciona el servicio de la tarjeta
+
 
     }
 }

@@ -28,6 +28,10 @@ public class Carrito {
         return sum;
     }
 
+    public void vaciar(){
+        productos.clear();
+    }
+
 
    /* public double getSum() {
         double sum = 0;
