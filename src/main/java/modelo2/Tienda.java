@@ -24,13 +24,21 @@ public class Tienda {
 
     //para actulizar las promociones
     public void setMarcaPromocion(MarcaPromocion marcaPromocion) {
-        this.marcaPromociones.get(marcaPromociones.size() - 1).setEstado();
-        this.marcaPromociones.add(marcaPromocion);
+        if (marcaPromociones.isEmpty()) {
+            this.marcaPromociones.add(marcaPromocion);
+        } else {
+            this.marcaPromociones.get(marcaPromociones.size() - 1).setEstado();
+            this.marcaPromociones.add(marcaPromocion);
+        }
     }
 
     public void setTarjetaPromocion(TarjetaPromocion tarjetaPromocion) {
-        this.tarjetaPromociones.get(tarjetaPromociones.size() - 1).setEstado();
-        this.tarjetaPromociones.add(tarjetaPromocion);
+        if (this.tarjetaPromociones.isEmpty()) {
+            this.tarjetaPromociones.add(tarjetaPromocion);
+        } else {
+            this.tarjetaPromociones.get(tarjetaPromociones.size() - 1).setEstado();
+            this.tarjetaPromociones.add(tarjetaPromocion);
+        }
     }
 
 
@@ -44,5 +52,8 @@ public class Tienda {
         return this.tarjetaPromociones.get(tarjetaPromociones.size() - 1);
     }
 
+    public List<MarcaPromocion> promocionList() {
+        return marcaPromociones;
+    }
 
 }

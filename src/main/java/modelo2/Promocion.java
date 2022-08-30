@@ -13,11 +13,11 @@ public abstract class Promocion<P> {
 
     public Promocion(boolean estado, LocalDate fechaInicio, LocalDate fechaFin, P tipo) {
         this.estado = estado;
-        if (this.fechaValida(fechaInicio, fechaFin)) {
+       if (this.fechaValida(fechaInicio, fechaFin)) {
             this.fechaInicio = Date.from(fechaInicio.atStartOfDay(ZoneId.systemDefault()).toInstant());
             this.fechaFin = Date.from(fechaFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        } else {
-            throw new RuntimeException("Las fechas de la promocion no son validas." + fechaInicio + "|||||" + fechaFin);
+       } else {
+           throw new RuntimeException("Las fechas de la promocion no son validas." + fechaInicio + "|||||" + fechaFin);
         }
         this.tipo = tipo;
     }
@@ -25,10 +25,13 @@ public abstract class Promocion<P> {
     public void setEstado() {
         this.estado = !this.estado;
     }
+    public boolean getEstado() {
+       return this.estado;
+    }
 
     public boolean fechaValida(LocalDate fechaInicio, LocalDate fechaFin) {
         LocalDate hoy = LocalDate.now();
-        return (fechaInicio.isBefore(hoy) && fechaFin.isAfter(hoy) && fechaInicio.isBefore(fechaFin));
+        return (fechaInicio.isBefore(fechaFin));
     }
 
 

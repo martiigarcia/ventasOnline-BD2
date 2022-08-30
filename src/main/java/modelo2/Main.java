@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Cliente cliente1 = new Cliente("Martina", "Garcia", 567842, "marti@gmai.com");
-        Cliente cliente2 = new Cliente("Emilia", "Mernes", 658953, "emi@gmail.com");
+        Cliente cliente1 = new Cliente("Martina", "Garcia", "56784252", "marti@gmai.com");
+        Cliente cliente2 = new Cliente("Emilia", "Mernes", "65895341", "emi@gmail.com");
 
         Tarjeta tarjeta1 = new Tarjeta(1, TipoTarjeta.MP);
         Tarjeta tarjeta2 = new Tarjeta(2, TipoTarjeta.UALA);
@@ -34,11 +34,11 @@ public class Main {
 
         tienda.setTarjetaPromocion(
                 new TarjetaPromocion(true,
-                        LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 30),
+                        LocalDate.of(2022, 8, 30), LocalDate.of(2022, 9, 2),
                         TipoTarjeta.MP));
         tienda.setMarcaPromocion(
                 new MarcaPromocion(true,
-                        LocalDate.of(2022, 8, 27), LocalDate.of(2022, 8, 30),
+                        LocalDate.of(2022, 8, 30), LocalDate.of(2022, 9, 2),
                         marca1));
 
 
@@ -60,6 +60,14 @@ public class Main {
 
         tienda.agregarVenta(carrito1.pagar(cliente1, cliente1.getTarjetas().get(opcion)));
 
-        //probar agregar promocion a las listas de promociones
+        //probar agregar promocion nueva a las listas de promociones
+
+        tienda.setMarcaPromocion(
+                new MarcaPromocion(true,
+                        LocalDate.of(2022,8,30),LocalDate.of(2022,9,1),
+                        marca2)
+        );
+
+      tienda.promocionList().forEach(marcaPromocion -> System.out.println(marcaPromocion.marca()+", "+ marcaPromocion.estado()));
     }
 }
