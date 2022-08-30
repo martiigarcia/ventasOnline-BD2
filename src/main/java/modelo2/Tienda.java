@@ -5,14 +5,17 @@ import java.util.List;
 
 public class Tienda {
 
-    private MarcaPromocion marcaPromocion;
+    //se hacen dos listas para mantener el registro historico de cada tipo de promociones
+    private List<MarcaPromocion> marcaPromociones;
 
-    private TarjetaPromocion tarjetaPromocion;
+    private List<TarjetaPromocion> tarjetaPromociones;
 
     private List<Venta> ventaList;
 
     public Tienda() {
         this.ventaList = new ArrayList<>();
+        this.marcaPromociones = new ArrayList<>();
+        this.tarjetaPromociones = new ArrayList<>();
     }
 
     public void agregarVenta(Venta venta) {
@@ -21,26 +24,25 @@ public class Tienda {
 
     //para actulizar las promociones
     public void setMarcaPromocion(MarcaPromocion marcaPromocion) {
-        this.marcaPromocion = marcaPromocion;
+        this.marcaPromociones.get(marcaPromociones.size() - 1).setEstado();
+        this.marcaPromociones.add(marcaPromocion);
     }
 
     public void setTarjetaPromocion(TarjetaPromocion tarjetaPromocion) {
-        this.tarjetaPromocion = tarjetaPromocion;
+        this.tarjetaPromociones.get(tarjetaPromociones.size() - 1).setEstado();
+        this.tarjetaPromociones.add(tarjetaPromocion);
     }
 
+
+    //retornar la promocion de marca vigente
     public MarcaPromocion MarcaPromocion() {
-        return marcaPromocion;
+        return this.marcaPromociones.get(marcaPromociones.size() - 1);
     }
 
+    //retornar la promocion de tarjeta vigente
     public TarjetaPromocion TarjetaPromocion() {
-        return tarjetaPromocion;
+        return this.tarjetaPromociones.get(tarjetaPromociones.size() - 1);
     }
 
-    public List<Promocion> promociones() {
-        List<Promocion> promocions = new ArrayList<>();
-        promocions.add(this.marcaPromocion);
-        promocions.add(this.tarjetaPromocion);
-        return promocions;
-    }
 
 }

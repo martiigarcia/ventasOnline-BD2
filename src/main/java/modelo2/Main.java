@@ -60,5 +60,6 @@ public class Main {
 
         tienda.agregarVenta(carrito1.pagar(cliente1, cliente1.getTarjetas().get(opcion)));
 
+        //probar agregar promocion a las listas de promociones
     }
 }

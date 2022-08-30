@@ -19,6 +19,10 @@ public class MarcaPromocion extends Promocion<Marca> {
         return marca;
     }
 
+    public void setEstado(){
+        super.setEstado();
+    }
+
     @Override
     public String toString() {
         return "MarcaPromocion{ " + marca +" }";

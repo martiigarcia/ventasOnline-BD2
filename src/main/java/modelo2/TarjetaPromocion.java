@@ -15,6 +15,9 @@ public class TarjetaPromocion extends Promocion<TipoTarjeta>{
     public double getDescuento() {
         return 0.08;
     }
+    public void setEstado(){
+        super.setEstado();
+    }
 
     public TipoTarjeta tarjeta(){
         return tarjeta;

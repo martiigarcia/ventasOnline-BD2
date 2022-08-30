@@ -1,0 +1,15 @@
+ Calcular el monto total del carrito seleccionado sin descuentos vigentes, pero con descuentos que ya caducaron.
+
+ Calcular el monto total del carrito con un descuento vigente para los productos marca Acme.
+
+ Calcular el monto total del carrito con un descuento vigente del tipo de Medio de pago.
+
+ Calcular el monto total del carrito con dos descuentos vigentes, sobre productos marca Comarca y para tarjeta de crédito MemeCard.
+
+ Realizar el pago y verificar que se genere la venta u orden de pago.
+
+ Verificar que no sea posible crear un Producto sin categoría, descripción y precio.
+
+ Verificar que no sea posible crear un Cliente sin dni, nombre y apellido. Y que el email sea válido.
+
+ Verificar que no sea posible crear un descuento con fechas validez superpuestas.

@@ -22,6 +22,10 @@ public abstract class Promocion<P> {
         this.tipo = tipo;
     }
 
+    public void setEstado() {
+        this.estado = !this.estado;
+    }
+
     public boolean fechaValida(LocalDate fechaInicio, LocalDate fechaFin) {
         LocalDate hoy = LocalDate.now();
         return (fechaInicio.isBefore(hoy) && fechaFin.isAfter(hoy) && fechaInicio.isBefore(fechaFin));
