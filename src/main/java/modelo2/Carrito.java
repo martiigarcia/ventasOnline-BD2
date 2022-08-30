@@ -44,8 +44,13 @@ public class Carrito {
 
     }
 
-    public Venta pagar() {
-        return new Venta();
+    public Venta pagar(Cliente cliente, Tarjeta tarjeta) {
+
+        if (tarjeta != null) { //deberia ser la validacion del servicio
+            this.productos.clear();
+            return new Venta(cliente, tarjeta, EstadoVenta.COMPLETA);
+        }
+        return new Venta(cliente, tarjeta, EstadoVenta.CANCELADA);
     }
 
 }

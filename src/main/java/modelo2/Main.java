@@ -48,14 +48,17 @@ public class Main {
 
         int indice = 0;
         for (Tarjeta tarjeta : cliente1.getTarjetas()) {
-            System.out.println(indice + "- Numero de tarjeta: " + tarjeta.getNumero()+" . Tipo tarjeta: "+ tarjeta.tipoTarjeta());
+            System.out.println(indice + "- Numero de tarjeta: " + tarjeta.getNumero() + " . Tipo tarjeta: " + tarjeta.tipoTarjeta());
             indice++;
         }
         System.out.println("Elegir tarjeta: ");
         int opcion = lectura.nextInt();
         System.out.println("Opcion elegida: " + opcion + " - Numero de tarjeta: " + cliente1.getTarjetas().get(opcion).getNumero());
 
-       double precio = carrito1.calcularMontoCarrito(tienda.MarcaPromocion(), tienda.TarjetaPromocion(), cliente1.getTarjetas().get(opcion));
-       System.out.println("Precio calculado con promociones de marca y tarjeta: "+ precio);
+        double precio = carrito1.calcularMontoCarrito(tienda.MarcaPromocion(), tienda.TarjetaPromocion(), cliente1.getTarjetas().get(opcion));
+        System.out.println("Precio calculado con promociones de marca y tarjeta: " + precio);
+
+        tienda.agregarVenta(carrito1.pagar(cliente1, cliente1.getTarjetas().get(opcion)));
+
     }
 }

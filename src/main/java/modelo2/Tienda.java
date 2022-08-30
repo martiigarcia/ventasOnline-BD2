@@ -15,7 +15,7 @@ public class Tienda {
         this.ventaList = new ArrayList<>();
     }
 
-    public void agregarVentaRelizada(Venta venta) {
+    public void agregarVenta(Venta venta) {
         this.ventaList.add(venta);
     }
 
