@@ -42,13 +42,11 @@ public class Venta {
         return carrito;
     }*/
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
-    }
 
-    public void setMontoTotal(Promocion promocion) {
+
+   /* public void setMontoTotal(Promocion promocion) {
         this.montoTotal = promocion.calcularMontoCarrito(new Carrito(carrito));
-    }
+    }*/
 
     public double getMontoTotal(){return montoTotal;}
 

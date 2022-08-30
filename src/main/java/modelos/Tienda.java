@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Tienda {
 
-    private List<Promocion> promocionList;
+    private List<Promocion> promocionList;//vigentes
     private List<Venta> ventaList;
 
     public Tienda(){

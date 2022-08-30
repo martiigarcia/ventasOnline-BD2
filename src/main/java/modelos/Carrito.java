@@ -5,14 +5,13 @@ import java.util.List;
 
 public class Carrito {
 
-    private List<Producto> productos ;
+    private List<Producto> productos;
 
-    public Carrito() {
+    public Carrito() { //promocion
         this.productos = new ArrayList<>();
     }
-    public Carrito(List<Producto> productos) {
-        this.productos =  productos;
-    }
+
+
 
     public void setProductos(Producto producto) {
         this.productos.add(
