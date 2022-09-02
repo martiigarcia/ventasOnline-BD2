@@ -1,10 +1,7 @@
 
-import modelo2.Categoria;
-import modelo2.Cliente;
-import modelo2.Marca;
-import modelo2.Producto;
+import modelo2.*;
 import org.junit.jupiter.api.BeforeEach;
-import  org.junit.jupiter.api.Test ;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
@@ -12,50 +9,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TiendaTest {
 
-
-
     @Test
-   public void crearCliente(){
-        Cliente cliente = new Cliente("Martina", "Garcia", "56784252", "marti@gmai.com");
-    }
-    @Test
-    public void crearProducto(){
-        Marca marca = new Marca("Frutiloqui");
-        Categoria categoria = new Categoria("frutas");
-        Producto producto = new Producto(1, "manzana", categoria, 34, marca);
-    }
+    public void registrarVenta() {
+            // aca registrar venta en la tienda
 
-    @Test
-    public void descuentoDeProducto(){
+        Tienda tienda = new Tienda();
 
-    }
+        /*
+        *
 
-    @Test
-    public void descuentoDeCompra(){
+        tienda.setTarjetaPromocion(
+                new TarjetaPromocion(true,
+                        LocalDate.of(2022, 8, 29), LocalDate.of(2022, 8, 30),
+                        TipoTarjeta.MP));
 
-    }
+        tienda.setMarcaPromocion(
+                new MarcaPromocion(true,
+                        LocalDate.of(2022, 8, 30), LocalDate.of(2022, 9, 2),
+                        marca1));
 
-    @Test
-    public void descuentoDeProductosYCompra(){
+        *
+        * */
 
     }
 
     @Test
-    public void descuentosCaducados(){
-
+    public void registrarPromocionNueva() {
+            // aca registrar promocion en la tienda (probar con ambos tipos)
+            // con fechas invalidas
     }
-
-    @Test
-    public void registrarVenta(){
-
-    }
-
-    @Test
-    public void registrarDescuentoNuevo(){
-
-    }
-
-
 
 
 }

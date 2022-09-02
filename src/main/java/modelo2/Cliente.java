@@ -15,8 +15,19 @@ public class Cliente {
 
 
     public Cliente(String nombre, String apellido, String dni, String email) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+
+        if (!(nombre == null || nombre.isEmpty())){
+            this.nombre = nombre;
+        }else {
+            throw new RuntimeException("El nombre debe ser valido");
+        }
+
+        if (!(apellido == null || apellido.isEmpty())){
+            this.apellido = apellido;
+        }else {
+            throw new RuntimeException("El apellido debe ser valido");
+        }
+
         if (validarDNI(dni)){
             this.dni = dni;
         }else {
@@ -59,5 +70,14 @@ public class Cliente {
         this.tarjetas.add(tarjeta);
     }
 
-
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", email='" + email + '\'' +
+                ", tarjetas=" + tarjetas +
+                '}';
+    }
 }

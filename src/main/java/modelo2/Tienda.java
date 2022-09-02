@@ -21,6 +21,18 @@ public class Tienda {
     public void agregarVenta(Venta venta) {
         this.ventaList.add(venta);
     }
+    public List<Venta> verVentasRealizadas(){
+        return ventaList;
+    }
+
+    @Override
+    public String toString() {
+        return "Tienda{" +
+                "marcaPromociones=" + marcaPromociones +
+                ", tarjetaPromociones=" + tarjetaPromociones +
+                ", ventaList=" + ventaList +
+                '}';
+    }
 
     //para actulizar las promociones
     public void setMarcaPromocion(MarcaPromocion marcaPromocion) {

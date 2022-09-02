@@ -19,8 +19,8 @@ public class Main {
         Marca marca1 = new Marca("Eco");
         Marca marca2 = new Marca("Frutiloqui");
         Categoria categoria1 = new Categoria("frutas");
-        Producto producto1 = new Producto(1, "manzana", categoria1, 34, marca1);
-        Producto producto2 = new Producto(1, "pera", categoria1, 6, marca2);
+        Producto producto1 = new Producto(1, 34, "manzana", categoria1,  marca1);
+        Producto producto2 = new Producto(1, 6, "pera", categoria1,  marca2);
 
         Carrito carrito1 = new Carrito();
         Carrito carrito2 = new Carrito();
@@ -34,7 +34,7 @@ public class Main {
 
         tienda.setTarjetaPromocion(
                 new TarjetaPromocion(true,
-                        LocalDate.of(2022, 8, 30), LocalDate.of(2022, 9, 2),
+                        LocalDate.of(2022, 8, 29), LocalDate.of(2022, 8, 30),
                         TipoTarjeta.MP));
         tienda.setMarcaPromocion(
                 new MarcaPromocion(true,
@@ -58,16 +58,18 @@ public class Main {
         double precio = carrito1.calcularMontoCarrito(tienda.MarcaPromocion(), tienda.TarjetaPromocion(), cliente1.getTarjetas().get(opcion));
         System.out.println("Precio calculado con promociones de marca y tarjeta: " + precio);
 
-        tienda.agregarVenta(carrito1.pagar(cliente1, cliente1.getTarjetas().get(opcion)));
+        tienda.agregarVenta(carrito1.pagar(cliente1, tienda.MarcaPromocion(), tienda.TarjetaPromocion(), cliente1.getTarjetas().get(opcion)));
 
+        tienda.verVentasRealizadas().forEach(venta -> System.out.println(venta.toString()));
+        //System.out.println(tienda.verVentasRealizadas());
         //probar agregar promocion nueva a las listas de promociones
 
-        tienda.setMarcaPromocion(
+       /* tienda.setMarcaPromocion(
                 new MarcaPromocion(true,
-                        LocalDate.of(2022,8,30),LocalDate.of(2022,9,1),
+                        LocalDate.of(2022, 8, 30), LocalDate.of(2022, 9, 1),
                         marca2)
         );
 
-      tienda.promocionList().forEach(marcaPromocion -> System.out.println(marcaPromocion.marca()+", "+ marcaPromocion.estado()));
+        tienda.promocionList().forEach(marcaPromocion -> System.out.println(marcaPromocion.marca() + ", " + marcaPromocion.estado()));*/
     }
 }

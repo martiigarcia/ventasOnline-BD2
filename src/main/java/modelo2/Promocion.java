@@ -25,8 +25,16 @@ public abstract class Promocion<P> {
     public void setEstado() {
         this.estado = !this.estado;
     }
-    public boolean getEstado() {
+    public boolean estado() {
        return this.estado;
+    }
+
+    public LocalDate fechaInicio() {
+        return fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public LocalDate fechaFin() {
+        return fechaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     public boolean fechaValida(LocalDate fechaInicio, LocalDate fechaFin) {
@@ -35,7 +43,7 @@ public abstract class Promocion<P> {
     }
 
 
-    public abstract double getDescuento() ;
+    public abstract double descuento() ;
 
     @Override
     public String toString() {

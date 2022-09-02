@@ -1,6 +1,7 @@
 package modelo2;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class TarjetaPromocion extends Promocion<TipoTarjeta>{
 
@@ -12,7 +13,11 @@ public class TarjetaPromocion extends Promocion<TipoTarjeta>{
     }
 
     @Override
-    public double getDescuento() {
+    public double descuento() {
+        LocalDate hoy = LocalDate.now();
+        if (hoy.isAfter(this.fechaFin()) || hoy.isBefore(this.fechaInicio())){
+            return 0;
+        }
         return 0.08;
     }
     public void setEstado(){
