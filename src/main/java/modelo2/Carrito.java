@@ -8,7 +8,9 @@ public class Carrito {
 
     private List<Producto> productos;
 
-
+    public List<Producto> productos() {
+        return productos;
+    }
 
     public Carrito() {
         this.productos = new ArrayList<>();
@@ -16,15 +18,23 @@ public class Carrito {
     }
 
     public void agregarProductoAlCarrito(Producto producto) {
+        if (producto == null)
+            throw new RuntimeException("El producto a agregar no puede ser vacio.");
         this.productos.add(
                 new Producto(producto.getCodigo(), producto.getPrecio(),
                         producto.getDescripcion(), producto.getCategoria(),
-                         producto.getMarca()));
+                        producto.getMarca()));
     }
 
 
-
     public double calcularMontoCarrito(MarcaPromocion marcaPromocion, TarjetaPromocion tarjetaPromocion, Tarjeta tarjeta) {
+
+        if (marcaPromocion == null || tarjetaPromocion == null)
+            throw new RuntimeException("Las promociones no pueden ser vacias.");
+        if (!marcaPromocion.fechaValida() || !tarjetaPromocion.fechaValida())
+            throw new RuntimeException("Las promociones no tienen fechas validas.");
+        if (tarjeta == null)
+            throw new RuntimeException("La tarjeta para calcular el monto no puede ser vacia.");
 
         double precio = 0;
         for (Producto producto : this.productos) {

@@ -53,12 +53,15 @@ public class TiendaTest {
     public void registrarVenta() {
         // aca registrar venta en la tienda
 
-        assertEquals(Venta.class, carrito.pagar(cliente,
+        tienda.agregarVenta(carrito.pagar(cliente,
                 new MarcaPromocion(true,
-                LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), marcaAcme),
+                        LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), marcaAcme),
                 new TarjetaPromocion(true,
                         LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), TipoTarjeta.MP),
-                tarjeta).getClass());
+                tarjeta));
+
+        assertEquals(1, tienda.verVentasRealizadas().size());
+
 
     }
 
@@ -66,8 +69,6 @@ public class TiendaTest {
 
     @Test
     public void registrarPromocionMarcaNueva() {
-        // aca registrar promocion en la tienda (probar con ambos tipos)
-
         tienda.setMarcaPromocion(new MarcaPromocion(true,
                 LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), marcaAcme));
 
