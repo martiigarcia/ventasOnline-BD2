@@ -26,9 +26,6 @@ public abstract class Promocion<P> {
         this.estado = !this.estado;
     }
 
-    public boolean estado() {
-        return this.estado;
-    }
 
     public LocalDate fechaInicio() {
         return fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -47,21 +44,20 @@ public abstract class Promocion<P> {
         LocalDate hoy = LocalDate.now();
         LocalDate inicio = this.fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate fin = this.fechaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        //System.out.println(inicio.isBefore(fin) && hoy.isBefore(fin));
         return (inicio.isBefore(fin) && hoy.isBefore(fin)); //si se cumplen ambas y retorna true, es fecha valida
     }
 
 
     public abstract double descuento();
 
-    @Override
+    /*@Override
     public String toString() {
         return "Datos" + " {" +
                 "estado=" + estado +
                 ", fechaInicio=" + fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() +
                 ", fechaFin=" + fechaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() +
                 '}';
-    }
+    }*/
 
 
 }

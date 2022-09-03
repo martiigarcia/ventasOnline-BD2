@@ -1,6 +1,5 @@
 package modelo2;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +20,9 @@ public class Carrito {
         if (producto == null)
             throw new RuntimeException("El producto a agregar no puede ser vacio.");
         this.productos.add(
-                new Producto(producto.getCodigo(), producto.getPrecio(),
-                        producto.getDescripcion(), producto.getCategoria(),
-                        producto.getMarca()));
+                new Producto(producto.codigo(), producto.precio(),
+                        producto.descripcion(), producto.categoria(),
+                        producto.marca()));
     }
 
 
@@ -38,11 +37,11 @@ public class Carrito {
 
         double precio = 0;
         for (Producto producto : this.productos) {
-            if (producto.getMarca().equals(marcaPromocion.marca())) {
+            if (producto.marca().equals(marcaPromocion.marca())) {
 
-                precio = precio + (producto.getPrecio() - (producto.getPrecio() * marcaPromocion.descuento()));
+                precio = precio + (producto.precio() - (producto.precio() * marcaPromocion.descuento()));
             } else {
-                precio += producto.getPrecio();
+                precio += producto.precio();
             }
         }
         if (tarjeta.tipoTarjeta().equals(tarjetaPromocion.tarjeta())) {
@@ -58,12 +57,12 @@ public class Carrito {
         if (tarjeta != null) { //deberia ser la validacion del servicio
             return new Venta(cliente, tarjeta, EstadoVenta.COMPLETA, productos, calcularMontoCarrito(marcaPromocion, tarjetaPromocion, tarjeta));
         }
-        return new Venta(cliente, tarjeta, EstadoVenta.CANCELADA, productos, calcularMontoCarrito(marcaPromocion, tarjetaPromocion, tarjeta));
+        return new Venta(cliente, tarjeta, EstadoVenta.CANCELADA, productos, 0);
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return "Carrito{ " + productos +
                 " }";
-    }
+    }*/
 }

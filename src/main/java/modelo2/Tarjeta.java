@@ -11,19 +11,21 @@ public class Tarjeta {
         this.tipo = tipo;
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
     public TipoTarjeta tipoTarjeta(){
         return tipo;
     }
 
-    @Override
+   /* public int getNumero() {
+        return numero;
+    }*/
+
+
+
+   /* @Override
     public String toString() {
         return "Tarjeta{" +
                 "numero=" + numero +
                 ", tipo=" + tipo +
                 '}';
-    }
+    }*/
 }

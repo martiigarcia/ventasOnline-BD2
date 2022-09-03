@@ -1,6 +1,5 @@
 package modelo2;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +26,6 @@ public class Tienda {
         return ventaList;
     }
 
-    @Override
-    public String toString() {
-        return "Tienda{" +
-                "marcaPromociones=" + marcaPromociones +
-                ", tarjetaPromociones=" + tarjetaPromociones +
-                ", ventaList=" + ventaList +
-                '}';
-    }
 
     //para actulizar las promociones
     public void setMarcaPromocion(MarcaPromocion marcaPromocion) {
@@ -42,8 +33,7 @@ public class Tienda {
         if (marcaPromocion == null)
             throw new RuntimeException("La promocion no puede ser vacia");
 
-        LocalDate hoy = LocalDate.now();
-        if (hoy.isAfter(marcaPromocion.fechaFin()))
+        if (!marcaPromocion.fechaValida())
             throw new RuntimeException("No se puede crear una promocion con una fecha de finalizacion ya expirada.");
 
         if (marcaPromociones.isEmpty()) {
@@ -54,15 +44,13 @@ public class Tienda {
 
         }
 
-
     }
 
     public void setTarjetaPromocion(TarjetaPromocion tarjetaPromocion) {
         if (tarjetaPromocion == null)
             throw new RuntimeException("La promocion no puede ser vacia");
 
-        LocalDate hoy = LocalDate.now();
-        if (hoy.isAfter(tarjetaPromocion.fechaFin()))
+        if (!tarjetaPromocion.fechaValida())
             throw new RuntimeException("No se puede crear una promocion con una fecha de finalizacion ya expirada.");
 
         if (this.tarjetaPromociones.isEmpty()) {
@@ -75,12 +63,12 @@ public class Tienda {
 
 
     //retornar la promocion de marca vigente
-    public MarcaPromocion MarcaPromocion() {
+    public MarcaPromocion MarcaPromocionVigente() {
         return this.marcaPromociones.get(marcaPromociones.size() - 1);
     }
 
     //retornar la promocion de tarjeta vigente
-    public TarjetaPromocion TarjetaPromocion() {
+    public TarjetaPromocion TarjetaPromocionVigente() {
         return this.tarjetaPromociones.get(tarjetaPromociones.size() - 1);
     }
 
@@ -92,4 +80,13 @@ public class Tienda {
         return tarjetaPromociones;
     }
 
+ /* @Override
+    public String toString() {
+        return "Tienda{" +
+                "marcaPromociones=" + marcaPromociones +
+                ", tarjetaPromociones=" + tarjetaPromociones +
+                ", ventaList=" + ventaList +
+                '}';
+    }
+*/
 }

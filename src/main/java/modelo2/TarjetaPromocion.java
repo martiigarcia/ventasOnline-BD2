@@ -20,16 +20,14 @@ public class TarjetaPromocion extends Promocion<TipoTarjeta>{
         }
         return 0.08;
     }
-    public void setEstado(){
-        super.setEstado();
-    }
+
 
     public TipoTarjeta tarjeta(){
         return tarjeta;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "TarjetaPromocion{ "+ tarjeta +" }";
-    }
+    }*/
 }

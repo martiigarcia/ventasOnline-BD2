@@ -8,8 +8,8 @@ public class Categoria {
         this.nombre = nombre;
     }
 
-    @Override
+ /*  @Override
     public String toString() {
         return "Categoria: " + nombre;
-    }
+    }*/
 }

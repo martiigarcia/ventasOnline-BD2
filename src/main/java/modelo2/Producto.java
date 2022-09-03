@@ -2,15 +2,15 @@ package modelo2;
 
 public class Producto {
 
-    private int codigo;
+    private String codigo;
     private String descripcion;
     private Categoria categoria;
     private double precio;
     private Marca marca;
 
-    public Producto(int codigo, double precio, String descripcion, Categoria categoria, Marca marca) {
+    public Producto(String codigo, double precio, String descripcion, Categoria categoria, Marca marca) {
 
-        if (esDatoVacio(String.valueOf(codigo)))
+        if (esDatoVacio(codigo))
             throw new RuntimeException("El codigo debe ser valido");
         this.codigo = codigo;
 
@@ -40,27 +40,27 @@ public class Producto {
     }
 
 
-    public int getCodigo() {
+    public String codigo() {
         return codigo;
     }
 
-    public String getDescripcion() {
+    public String descripcion() {
         return descripcion;
     }
 
-    public Marca getMarca() {
+    public Marca marca() {
         return marca;
     }
 
-    public Categoria getCategoria() {
+    public Categoria categoria() {
         return categoria;
     }
 
-    public double getPrecio() {
+    public double precio() {
         return precio;
     }
 
-    @Override
+  /*  @Override
     public String toString() {
         return "Producto{" +
                 "codigo=" + codigo +
@@ -69,5 +69,5 @@ public class Producto {
                 ", precio=" + precio +
                 ", " + marca +
                 '}';
-    }
+    }*/
 }

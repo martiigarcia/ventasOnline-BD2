@@ -13,3 +13,17 @@
  Verificar que no sea posible crear un Cliente sin dni, nombre y apellido. Y que el email sea válido.
 
  Verificar que no sea posible crear un descuento con fechas validez superpuestas.
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+- Falla en logica de descuentos con promociones no validas:
+        Si dejo restricciones para no poder crear promociones con fechas mal puestas
+        entonces no puedo sacar el monto total del carrito sin descuentos
+        y viceversa
+
+
+
+
+
+

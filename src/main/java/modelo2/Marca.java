@@ -10,10 +10,10 @@ public class Marca {
     }
 
 
-    @Override
+   /* @Override
     public String toString() {
         return "Marca:" + nombre ;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -23,8 +23,4 @@ public class Marca {
         return Objects.equals(nombre, marca.nombre);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nombre);
-    }
 }

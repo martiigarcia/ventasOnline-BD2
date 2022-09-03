@@ -58,9 +58,6 @@ public class Cliente {
         return matcher.find();
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 
     public List<Tarjeta> getTarjetas() {
         return tarjetas;
@@ -70,7 +67,7 @@ public class Cliente {
         this.tarjetas.add(tarjeta);
     }
 
-    @Override
+  /*  @Override
     public String toString() {
         return "Cliente{" +
                 "nombre='" + nombre + '\'' +
@@ -79,5 +76,5 @@ public class Cliente {
                 ", email='" + email + '\'' +
                 ", tarjetas=" + tarjetas +
                 '}';
-    }
+    }*/
 }

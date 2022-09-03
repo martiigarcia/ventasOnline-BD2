@@ -15,6 +15,7 @@ public class CarritoTest {
     private Marca marcaAcme, marcaEco, marcaFrutiloqui;
     private Categoria categoria, categoria2;
     private Producto producto1, producto2, producto3, producto4;
+    private LocalDate fecha2DiasAntes, fecha2DiasDesp;
 
     @BeforeEach
     public void before() {
@@ -32,17 +33,14 @@ public class CarritoTest {
         categoria = new Categoria("Cosmetico");
         categoria2 = new Categoria("Fruta");
 
-        producto1 = new Producto(1, 100, "Labial", categoria, marcaAcme);
-        producto2 = new Producto(2, 100, "Rimel", categoria, marcaAcme);
-        producto4 = new Producto(3, 34, "Manzana", categoria2, marcaEco);
-        producto3 = new Producto(4, 6, "Pera", categoria2, marcaFrutiloqui);
+        producto1 = new Producto("1", 100, "Labial", categoria, marcaAcme);
+        producto2 = new Producto("2", 100, "Rimel", categoria, marcaAcme);
+        producto4 = new Producto("3", 34, "Manzana", categoria2, marcaEco);
+        producto3 = new Producto("4", 6, "Pera", categoria2, marcaFrutiloqui);
 
 
-       /* carrito.agregarProductoAlCarrito(producto1);
-        carrito.agregarProductoAlCarrito(producto2);
-        carrito.agregarProductoAlCarrito(producto3);
-        carrito.agregarProductoAlCarrito(producto4);*/
-
+        fecha2DiasAntes = LocalDate.now().minusDays(2);
+        fecha2DiasDesp = LocalDate.now().plusDays(2);
     }
 
     @Test
@@ -63,9 +61,9 @@ public class CarritoTest {
         carrito.agregarProductoAlCarrito(producto2);
         assertEquals(190, carrito.calcularMontoCarrito(
                 new MarcaPromocion(true,
-                        LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), marcaAcme),
+                        fecha2DiasAntes, fecha2DiasDesp, marcaAcme),
                 new TarjetaPromocion(true,
-                        LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), TipoTarjeta.UALA),
+                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.UALA),
                 tarjeta //tarjeta de mp
         ));
     }
@@ -78,9 +76,9 @@ public class CarritoTest {
         carrito.agregarProductoAlCarrito(producto4);
         assertEquals(36.8, carrito.calcularMontoCarrito(
                 new MarcaPromocion(true,
-                        LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), marcaAcme),
+                        fecha2DiasAntes, fecha2DiasDesp, marcaAcme),
                 new TarjetaPromocion(true,
-                        LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), TipoTarjeta.MP),
+                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MP),
                 tarjeta //tarjeta de mp
         ));
     }
@@ -94,9 +92,9 @@ public class CarritoTest {
         carrito.agregarProductoAlCarrito(producto2);
         assertEquals(174.8, carrito.calcularMontoCarrito(
                 new MarcaPromocion(true,
-                        LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), marcaAcme),
+                        fecha2DiasAntes, fecha2DiasDesp, marcaAcme),
                 new TarjetaPromocion(true,
-                        LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), TipoTarjeta.MP),
+                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MP),
                 tarjeta //tarjeta de mp
         ));
     }
@@ -110,9 +108,9 @@ public class CarritoTest {
         carrito.agregarProductoAlCarrito(producto2);
         assertThrows(RuntimeException.class, () -> carrito.calcularMontoCarrito(
                 new MarcaPromocion(true,
-                        LocalDate.of(2022,8,30), LocalDate.of(2022,9,1), marcaAcme),
+                        fecha2DiasAntes, LocalDate.now().minusDays(1), marcaAcme),
                 new TarjetaPromocion(true,
-                        LocalDate.of(2022,8,30), LocalDate.of(2022,9,1), TipoTarjeta.MP),
+                        fecha2DiasAntes, LocalDate.now().minusDays(1), TipoTarjeta.MP),
                 tarjeta //tarjeta de mp
         ));
     }
@@ -123,11 +121,26 @@ public class CarritoTest {
 
         assertEquals(Venta.class, carrito.pagar(cliente,
                 new MarcaPromocion(true,
-                        LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), marcaAcme),
+                        fecha2DiasAntes, fecha2DiasDesp, marcaAcme),
                 new TarjetaPromocion(true,
-                        LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), TipoTarjeta.MP),
+                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MP),
                 tarjeta).getClass());
+
     }
+
+    @Test
+    public void pagarYRegistrarVentaSinTarjetaValida(){
+        // aca registrar la venta desde el pagar del carrito
+
+        assertEquals(Venta.class, carrito.pagar(cliente,
+                new MarcaPromocion(true,
+                        fecha2DiasAntes, fecha2DiasDesp, marcaAcme),
+                new TarjetaPromocion(true,
+                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MP),
+                null).getClass());
+
+    }
+
 
 
 
