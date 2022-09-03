@@ -9,12 +9,12 @@ class ClienteTest {
     //todos los casos de prueba:
     public static Object[] parametros() {
         return new Object[][] {
-                { "", "Garcia", "40000000", "mar@gmail.com" },  //sin nombre
-                { "Marti", "", "40000000", "mar@gmail.com" },   //sin apellido
+                { "", "Garcia", "00000000", "mar@gmail.com" },  //sin nombre
+                { "Marti", "", "00000000", "mar@gmail.com" },   //sin apellido
                 { "Marti", "Garcia", "", "mar@gmail.com" },     //sin dni
-                { "Marti", "Garcia", "40000000", "mar@gmail" }, //email invalido
-                { "Marti", "Garcia", "40000000", "" },          //sin email
-                { "Marti", "Garcia", "400", "mar@gmail.com" },  //dni invalido
+                { "Marti", "Garcia", "00000000", "mar@gmail" }, //email invalido
+                { "Marti", "Garcia", "00000000", "" },          //sin email
+                { "Marti", "Garcia", "000", "mar@gmail.com" },  //dni invalido
         };
     }
 

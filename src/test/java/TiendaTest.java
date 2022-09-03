@@ -2,6 +2,8 @@
 import modelo2.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.time.LocalDate;
 
@@ -17,12 +19,11 @@ public class TiendaTest {
     private Categoria categoria, categoria2;
     private Producto producto1, producto2, producto3, producto4;
 
-    private Promocion promocionMarcaVigente, promocionTarjetaVigente;
-    private Promocion promocionMarcaNOVigente, promocionTarjetaNOVigente;
 
 
     @BeforeEach
     public void before() {
+
         tienda = new Tienda();
         carrito = new Carrito();
 
@@ -40,20 +41,6 @@ public class TiendaTest {
         producto2 = new Producto(2, 34, "Manzana", categoria2, marcaEco);
         producto3 = new Producto(3, 6, "Pera", categoria2, marcaFrutiloqui);
         producto4 = new Producto(4, 100, "Rimel", categoria, marcaAcme);
-
-        //promociones vigentes:
-        promocionMarcaVigente = new MarcaPromocion(true,
-                LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), marcaAcme);
-
-        promocionTarjetaVigente = new TarjetaPromocion(true,
-                LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), TipoTarjeta.MP);
-
-        //promociones no vigentes:
-        promocionMarcaNOVigente = new MarcaPromocion(true,
-                LocalDate.of(2022,8,30), LocalDate.of(2022,9,1), marcaAcme);
-
-        promocionTarjetaNOVigente = new TarjetaPromocion(true,
-                LocalDate.of(2022,8,30), LocalDate.of(2022,9,1), TipoTarjeta.MP);
 
         carrito.agregarProductoAlCarrito(producto1);
         carrito.agregarProductoAlCarrito(producto2);
@@ -75,27 +62,63 @@ public class TiendaTest {
 
     }
 
+    //REGISTRO DE PROMOCION CON FECHAS VALIDAS
+
     @Test
-    public void registrarPromocionNueva() {
+    public void registrarPromocionMarcaNueva() {
         // aca registrar promocion en la tienda (probar con ambos tipos)
-        // con fechas invalidas
 
-         /*
-        *
+        tienda.setMarcaPromocion(new MarcaPromocion(true,
+                LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), marcaAcme));
 
-        tienda.setTarjetaPromocion(
-                new TarjetaPromocion(true,
-                        LocalDate.of(2022, 8, 29), LocalDate.of(2022, 8, 30),
-                        TipoTarjeta.MP));
+        assertEquals( 1, tienda.marcaPromocionList().size());
 
-        tienda.setMarcaPromocion(
-                new MarcaPromocion(true,
-                        LocalDate.of(2022, 8, 30), LocalDate.of(2022, 9, 2),
-                        marca1));
-
-        *
-        * */
     }
+
+    @Test
+    public void registrarPromocionTarjetaNueva(){
+        tienda.setTarjetaPromocion(new TarjetaPromocion(true,
+                LocalDate.of(2022,9,2), LocalDate.of(2022,9,5), TipoTarjeta.MP));
+
+        assertEquals( 1, tienda.tarjetaPromocionList().size());
+    }
+
+
+    //REGISTRO DE PROMOCION INVALIDAS
+    @Test
+    public void registrarPromocionMarcaNuevaConFechaInvalida() {
+        //  intentar registrar promocion con una fecha de finalizacion previo al dia de hoy
+
+        assertThrows(RuntimeException.class, () -> tienda.setMarcaPromocion(new MarcaPromocion(true,
+                LocalDate.of(2022,8,30), LocalDate.of(2022,9,1), marcaAcme)));
+
+    }
+
+    @Test
+    public void registrarPromocionTarjetaNuevaConFechaInvalida(){
+        //  intentar registrar promocion con una fecha de finalizacion previo al dia de hoy
+
+        assertThrows(RuntimeException.class, () -> tienda.setTarjetaPromocion(new TarjetaPromocion(true,
+                LocalDate.of(2022,8,30), LocalDate.of(2022,9,1), TipoTarjeta.MP)));
+
+    }
+
+    @Test
+    public void registrarPromocionMarcaNuevaVacia() {
+        //  intentar registrar promocion con una fecha de finalizacion previo al dia de hoy
+
+        assertThrows(RuntimeException.class, () -> tienda.setMarcaPromocion(null));
+
+    }
+
+    @Test
+    public void registrarPromocionTarjetaNuevaVacia(){
+        //  intentar registrar promocion con una fecha de finalizacion previo al dia de hoy
+
+        assertThrows(RuntimeException.class, () -> tienda.setTarjetaPromocion(null));
+
+    }
+
 
 
 }
