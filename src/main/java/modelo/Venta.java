@@ -1,15 +1,24 @@
-package modelo2;
+package modelo;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Venta {
+    @Id
+    @GeneratedValue
+    private long id;
 
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Cliente cliente;
+    @Enumerated(EnumType.ORDINAL)
     private EstadoVenta estadoVenta;
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Tarjeta tarjeta;
 
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Producto> productosVendidos;
 
     private double montoAbonado;
@@ -24,6 +33,10 @@ public class Venta {
         this.montoAbonado = montoAbonado;
     }
 
+    protected Venta() {
+
+    }
+
     private void agregarProductos(List<Producto> productos) {
         productos.forEach(producto ->
                 this.productosVendidos.add(
@@ -33,7 +46,7 @@ public class Venta {
 
     }
 
-   /* @Override
+   @Override
     public String toString() {
         return "Venta{" +
                 "cliente=" + cliente +
@@ -42,5 +55,5 @@ public class Venta {
                 ", productosVendidos=" + productosVendidos +
                 ", montoAbonado=" + montoAbonado +
                 '}';
-    }*/
+    }
 }

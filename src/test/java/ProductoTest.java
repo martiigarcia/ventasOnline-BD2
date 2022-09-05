@@ -28,12 +28,12 @@ public class ProductoTest {
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import modelo2.Categoria;
-import modelo2.Marca;
+import modelo.Categoria;
+import modelo.Marca;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import modelo2.Producto;
+import modelo.Producto;
 
 class ProductoTest {
 

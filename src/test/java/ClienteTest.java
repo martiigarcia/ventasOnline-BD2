@@ -1,13 +1,13 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import modelo2.Tarjeta;
-import modelo2.TipoTarjeta;
+import modelo.Tarjeta;
+import modelo.TipoTarjeta;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import modelo2.Cliente;
+import modelo.Cliente;
 
 class ClienteTest {
 
@@ -32,7 +32,7 @@ class ClienteTest {
     @Test
     public void agregarTarjeta(){
         Cliente cliente =  new Cliente("Martina", "Garcia", "12345678", "marti@gmail.com");
-        Tarjeta tarjeta = new Tarjeta(12, TipoTarjeta.MP);
+        Tarjeta tarjeta = new Tarjeta(12, TipoTarjeta.MERCADOPAGO);
         cliente.agregarTarjeta(tarjeta);
         assertEquals(1, cliente.getTarjetas().size());
     }

@@ -1,9 +1,14 @@
-package modelo2;
+package modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
-
+@Entity
 public class MarcaPromocion extends Promocion<Marca> {
-
+    @Id
+    @GeneratedValue
+    private long id;
     private Marca marca;
 
     public MarcaPromocion(boolean estado, LocalDate fechaInicio, LocalDate fechaFin, Marca marca) {
@@ -11,6 +16,9 @@ public class MarcaPromocion extends Promocion<Marca> {
         this.marca = marca;
     }
 
+    public MarcaPromocion() {
+
+    }
 
 
     @Override

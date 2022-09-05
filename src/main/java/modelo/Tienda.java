@@ -1,16 +1,25 @@
-package modelo2;
+package modelo;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Tienda {
+    @Id
+    @GeneratedValue
+    private long id;
 
     //se hacen dos listas para mantener el registro historico de cada tipo de promociones
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+
     private List<MarcaPromocion> marcaPromociones;
 
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<TarjetaPromocion> tarjetaPromociones;
 
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Venta> ventaList;
+
 
     public Tienda() {
         this.ventaList = new ArrayList<>();
@@ -80,7 +89,9 @@ public class Tienda {
         return tarjetaPromociones;
     }
 
- /* @Override
+
+
+  @Override
     public String toString() {
         return "Tienda{" +
                 "marcaPromociones=" + marcaPromociones +
@@ -88,5 +99,5 @@ public class Tienda {
                 ", ventaList=" + ventaList +
                 '}';
     }
-*/
+
 }

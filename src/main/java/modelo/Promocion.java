@@ -1,11 +1,16 @@
-package modelo2;
+package modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-
+@Entity
 public abstract class Promocion<P> {
-
+    @Id
+    @GeneratedValue
+    private long id;
     private boolean estado;
     private Date fechaInicio;
     private Date fechaFin;
@@ -20,6 +25,10 @@ public abstract class Promocion<P> {
             throw new RuntimeException("Las fechas de la promocion no son validas." + fechaInicio + "|||||" + fechaFin);
         }
         this.tipo = tipo;
+    }
+
+    protected Promocion() {
+
     }
 
     public void setEstado() {

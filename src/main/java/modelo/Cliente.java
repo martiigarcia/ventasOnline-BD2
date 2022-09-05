@@ -1,18 +1,30 @@
-package modelo2;
+package modelo;
 
+import javax.persistence.*;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+@Entity
 public class Cliente {
+
+    @Id
+    @GeneratedValue
+    private long id;
 
     private String nombre;
     private String apellido;
     private String dni;
     private String email;
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Tarjeta> tarjetas;
 
+    protected Cliente() {
+
+    }
 
     public Cliente(String nombre, String apellido, String dni, String email) {
 
@@ -67,7 +79,34 @@ public class Cliente {
         this.tarjetas.add(tarjeta);
     }
 
-  /*  @Override
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTarjetas(List<Tarjeta> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+    public boolean tarjetaPropia(Tarjeta tarjeta){
+       return this.tarjetas.contains(tarjeta);
+    }
+
+    @Override
     public String toString() {
         return "Cliente{" +
                 "nombre='" + nombre + '\'' +
@@ -76,5 +115,5 @@ public class Cliente {
                 ", email='" + email + '\'' +
                 ", tarjetas=" + tarjetas +
                 '}';
-    }*/
+    }
 }

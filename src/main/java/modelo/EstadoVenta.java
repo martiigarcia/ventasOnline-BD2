@@ -1,4 +1,4 @@
-package modelo2;
+package modelo;
 
 public enum EstadoVenta{
 

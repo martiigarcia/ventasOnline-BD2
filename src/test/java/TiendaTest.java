@@ -1,5 +1,5 @@
 
-import modelo2.*;
+import modelo.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ public class TiendaTest {
         carrito = new Carrito();
 
         cliente = new Cliente("Martina", "Garcia", "12345678", "marti@gmail.com");
-        tarjeta = new Tarjeta(1111, TipoTarjeta.MP);
+        tarjeta = new Tarjeta(1111, TipoTarjeta.MERCADOPAGO);
 
         marcaAcme = new Marca("Acme");
         marcaEco = new Marca("Eco");
@@ -63,7 +63,7 @@ public class TiendaTest {
                 fecha2DiasDesp, marcaAcme));
         tienda.setTarjetaPromocion(new TarjetaPromocion(true,
                 fecha2DiasAntes,
-                fecha2DiasDesp, TipoTarjeta.MP));
+                fecha2DiasDesp, TipoTarjeta.MERCADOPAGO));
 
 
         tienda.agregarVenta(carrito.pagar(cliente,
@@ -88,7 +88,7 @@ public class TiendaTest {
     @Test
     public void registrarPromocionTarjetaNueva() {
         tienda.setTarjetaPromocion(new TarjetaPromocion(true,
-                fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MP));
+                fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MERCADOPAGO));
 
         assertEquals(1, tienda.tarjetaPromocionList().size());
     }
@@ -107,7 +107,7 @@ public class TiendaTest {
                 fecha2DiasDesp, marcaAcme));
         tienda.setTarjetaPromocion(new TarjetaPromocion(true,
                 fecha2DiasAntes,
-                fecha2DiasDesp, TipoTarjeta.MP));
+                fecha2DiasDesp, TipoTarjeta.MERCADOPAGO));
 
         assertEquals(2, tienda.marcaPromocionList().size());
         assertEquals(2, tienda.tarjetaPromocionList().size());
@@ -128,7 +128,7 @@ public class TiendaTest {
         //  intentar registrar promocion con una fecha de finalizacion previo al dia de hoy
 
         assertThrows(RuntimeException.class, () -> tienda.setTarjetaPromocion(new TarjetaPromocion(true,
-                fecha2DiasAntes, LocalDate.now().minusDays(1), TipoTarjeta.MP)));
+                fecha2DiasAntes, LocalDate.now().minusDays(1), TipoTarjeta.MERCADOPAGO)));
 
     }
 
@@ -137,7 +137,7 @@ public class TiendaTest {
         //  intentar registrar promocion con una fecha de finalizacion previo al dia de hoy
 
         assertThrows(RuntimeException.class, () -> tienda.setTarjetaPromocion(new TarjetaPromocion(true,
-                fecha2DiasDesp, fecha2DiasAntes, TipoTarjeta.MP)));
+                fecha2DiasDesp, fecha2DiasAntes, TipoTarjeta.MERCADOPAGO)));
 
     }
 

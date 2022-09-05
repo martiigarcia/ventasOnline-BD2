@@ -1,13 +1,25 @@
-package modelo2;
+package modelo;
 
+import javax.jdo.annotations.Unique;
+import javax.persistence.*;
+
+@Entity
 public class Producto {
+    @Id
+    @GeneratedValue
+    private long id;
 
+  //  @Unique
     private String codigo;
     private String descripcion;
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Categoria categoria;
     private double precio;
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Marca marca;
+protected Producto(){
 
+}
     public Producto(String codigo, double precio, String descripcion, Categoria categoria, Marca marca) {
 
         if (esDatoVacio(codigo))
@@ -39,6 +51,29 @@ public class Producto {
         return dato == null;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
 
     public String codigo() {
         return codigo;
@@ -60,7 +95,7 @@ public class Producto {
         return precio;
     }
 
-  /*  @Override
+    @Override
     public String toString() {
         return "Producto{" +
                 "codigo=" + codigo +
@@ -69,5 +104,5 @@ public class Producto {
                 ", precio=" + precio +
                 ", " + marca +
                 '}';
-    }*/
+    }
 }

@@ -1,5 +1,5 @@
 
-import modelo2.*;
+import modelo.*;
 import org.junit.jupiter.api.BeforeEach;
 import  org.junit.jupiter.api.Test ;
 
@@ -24,7 +24,7 @@ public class CarritoTest {
         carrito = new Carrito();
 
         cliente = new Cliente("Martina", "Garcia", "12345678", "marti@gmail.com");
-        tarjeta = new Tarjeta(1111, TipoTarjeta.MP);
+        tarjeta = new Tarjeta(1111, TipoTarjeta.MERCADOPAGO);
 
         marcaAcme = new Marca("Acme");
         marcaEco = new Marca("Eco");
@@ -78,7 +78,7 @@ public class CarritoTest {
                 new MarcaPromocion(true,
                         fecha2DiasAntes, fecha2DiasDesp, marcaAcme),
                 new TarjetaPromocion(true,
-                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MP),
+                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MERCADOPAGO),
                 tarjeta //tarjeta de mp
         ));
     }
@@ -94,7 +94,7 @@ public class CarritoTest {
                 new MarcaPromocion(true,
                         fecha2DiasAntes, fecha2DiasDesp, marcaAcme),
                 new TarjetaPromocion(true,
-                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MP),
+                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MERCADOPAGO),
                 tarjeta //tarjeta de mp
         ));
     }
@@ -110,7 +110,7 @@ public class CarritoTest {
                 new MarcaPromocion(true,
                         fecha2DiasAntes, LocalDate.now().minusDays(1), marcaAcme),
                 new TarjetaPromocion(true,
-                        fecha2DiasAntes, LocalDate.now().minusDays(1), TipoTarjeta.MP),
+                        fecha2DiasAntes, LocalDate.now().minusDays(1), TipoTarjeta.MERCADOPAGO),
                 tarjeta //tarjeta de mp
         ));
     }
@@ -123,7 +123,7 @@ public class CarritoTest {
                 new MarcaPromocion(true,
                         fecha2DiasAntes, fecha2DiasDesp, marcaAcme),
                 new TarjetaPromocion(true,
-                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MP),
+                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MERCADOPAGO),
                 tarjeta).getClass());
 
     }
@@ -136,7 +136,7 @@ public class CarritoTest {
                 new MarcaPromocion(true,
                         fecha2DiasAntes, fecha2DiasDesp, marcaAcme),
                 new TarjetaPromocion(true,
-                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MP),
+                        fecha2DiasAntes, fecha2DiasDesp, TipoTarjeta.MERCADOPAGO),
                 null).getClass());
 
     }

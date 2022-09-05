@@ -1,15 +1,23 @@
-package modelo2;
+package modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
-import java.time.ZoneId;
-
+@Entity
 public class TarjetaPromocion extends Promocion<TipoTarjeta>{
-
+    @Id
+    @GeneratedValue
+    private long id;
     private TipoTarjeta tarjeta;
 
     public TarjetaPromocion(boolean estado, LocalDate fechaInicio, LocalDate fechaFin, TipoTarjeta tarjeta) {
         super(estado, fechaInicio, fechaFin, tarjeta);
         this.tarjeta = tarjeta;
+    }
+
+    protected TarjetaPromocion() {
+
     }
 
     @Override

@@ -1,10 +1,20 @@
-package modelo2;
+package modelo;
 
+import javax.persistence.*;
+
+@Entity
 public class Tarjeta {
 
+    @Id
+    @GeneratedValue
+    private long id;
     private int numero;
-    private TipoTarjeta tipo;
+   // private TipoTarjeta tipo;
+    @Enumerated(EnumType.ORDINAL) TipoTarjeta tipo;
 
+    protected Tarjeta(){
+
+    }
 
     public Tarjeta(int numero, TipoTarjeta tipo) {
         this.numero = numero;
@@ -21,11 +31,11 @@ public class Tarjeta {
 
 
 
-   /* @Override
+    @Override
     public String toString() {
         return "Tarjeta{" +
                 "numero=" + numero +
-                ", tipo=" + tipo +
+                ", tipo=" + tipo.nombre() +
                 '}';
-    }*/
+    }
 }
