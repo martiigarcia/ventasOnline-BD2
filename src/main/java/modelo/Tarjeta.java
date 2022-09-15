@@ -1,6 +1,8 @@
 package modelo;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class Tarjeta {
@@ -20,6 +22,11 @@ public class Tarjeta {
         this.numero = numero;
         this.tipo = tipo;
     }
+    public Tarjeta(long id, int numero, TipoTarjeta tipo) {
+        this.numero = numero;
+        this.tipo = tipo;
+        this.id = id;
+    }
 
     public TipoTarjeta tipoTarjeta(){
         return tipo;
@@ -28,7 +35,12 @@ public class Tarjeta {
    /* public int getNumero() {
         return numero;
     }*/
+   public Map<String, Object> toMap() {
+       var map = new HashMap<String, Object>(
+               Map.of("id", id, "numero", numero, "tipo", tipo));
 
+       return map;
+   }
 
 
     @Override

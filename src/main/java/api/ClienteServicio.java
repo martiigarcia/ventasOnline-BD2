@@ -1,5 +1,7 @@
 package api;
 
+import modelo.Tarjeta;
+
 import java.util.List;
 
 public interface ClienteServicio {
@@ -12,6 +14,6 @@ public interface ClienteServicio {
     void agregarTarjeta(Long idCliente, String nro, String marca);
 
     //Devuelve las tarjetas de un cliente específico
-    List listarTarjetas(Long idCliente);
+    List<Tarjeta> listarTarjetas(Long idCliente);
 
 }

@@ -2,6 +2,8 @@ package modelo;
 
 import javax.jdo.annotations.Unique;
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class Producto {
@@ -9,7 +11,7 @@ public class Producto {
     @GeneratedValue
     private long id;
 
-  //  @Unique
+    //  @Unique
     private String codigo;
     private String descripcion;
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
@@ -17,10 +19,12 @@ public class Producto {
     private double precio;
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Marca marca;
-protected Producto(){
 
-}
-    public Producto(String codigo, double precio, String descripcion, Categoria categoria, Marca marca) {
+    protected Producto() {
+
+    }
+
+    public Producto(String codigo, double precio, String descripcion, Categoria categoria, Marca marca) throws RuntimeException {
 
         if (esDatoVacio(codigo))
             throw new RuntimeException("El codigo debe ser valido");
@@ -43,6 +47,11 @@ protected Producto(){
         this.marca = marca;
     }
 
+    public Producto(long id, String codigo, double precio, String descripcion, Categoria categoria, Marca marca) throws RuntimeException{
+        this(codigo, precio, descripcion, categoria, marca);
+        this.id = id;
+    }
+
     private boolean esDatoVacio(String dato) {
         return dato.equals("");
     }
@@ -55,6 +64,9 @@ protected Producto(){
         this.id = id;
     }
 
+    public long getId(){
+        return id;
+    }
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -98,11 +110,20 @@ protected Producto(){
     @Override
     public String toString() {
         return "Producto{" +
-                "codigo=" + codigo +
+                "id: "+id+
+                ", codigo=" + codigo +
                 ", descripcion='" + descripcion + '\'' +
                 ", " + categoria +
                 ", precio=" + precio +
                 ", " + marca +
                 '}';
+    }
+
+    public Map<String, Object> toMap() {
+        var map = new HashMap<String, Object>(
+                Map.of("id", id, "codigo", codigo, "precio", precio, "descripcion", descripcion,
+                        "categoria", categoria, "marca", marca));
+
+        return map;
     }
 }

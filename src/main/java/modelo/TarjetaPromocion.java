@@ -1,17 +1,13 @@
 package modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
-@Entity
+@Embeddable
 public class TarjetaPromocion extends Promocion<TipoTarjeta>{
-    @Id
-    @GeneratedValue
-    private long id;
-    private TipoTarjeta tarjeta;
 
-    public TarjetaPromocion(boolean estado, LocalDate fechaInicio, LocalDate fechaFin, TipoTarjeta tarjeta) {
+    @Enumerated private TipoTarjeta tarjeta;
+
+    public TarjetaPromocion(boolean estado, LocalDate fechaInicio, LocalDate fechaFin, TipoTarjeta tarjeta) throws RuntimeException{
         super(estado, fechaInicio, fechaFin, tarjeta);
         this.tarjeta = tarjeta;
     }

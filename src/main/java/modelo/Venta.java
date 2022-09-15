@@ -19,7 +19,7 @@ public class Venta {
     private Tarjeta tarjeta;
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private List<Producto> productosVendidos;
+    private List<ProductoVendido> productosVendidos;
 
     private double montoAbonado;
 
@@ -40,9 +40,8 @@ public class Venta {
     private void agregarProductos(List<Producto> productos) {
         productos.forEach(producto ->
                 this.productosVendidos.add(
-                        new Producto(producto.codigo(), producto.precio(),
-                                producto.descripcion(), producto.categoria(),
-                                 producto.marca())));
+                        new ProductoVendido(producto.codigo(), producto.precio()
+                              )));
 
     }
 

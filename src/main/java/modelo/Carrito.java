@@ -16,7 +16,7 @@ public class Carrito {
         //    this.cliente = cliente;
     }
 
-    public void agregarProductoAlCarrito(Producto producto) {
+    public void agregarProductoAlCarrito(Producto producto) throws RuntimeException {
         if (producto == null)
             throw new RuntimeException("El producto a agregar no puede ser vacio.");
         this.productos.add(
@@ -26,14 +26,16 @@ public class Carrito {
     }
 
 
-    public double calcularMontoCarrito(MarcaPromocion marcaPromocion, TarjetaPromocion tarjetaPromocion, Tarjeta tarjeta) {
+    public double calcularMontoCarrito(MarcaPromocion marcaPromocion, TarjetaPromocion tarjetaPromocion, Tarjeta tarjeta) throws RuntimeException {
 
         if (marcaPromocion == null || tarjetaPromocion == null)
             throw new RuntimeException("Las promociones no pueden ser vacias.");
-        if (!marcaPromocion.fechaValida() || !tarjetaPromocion.fechaValida())
-            throw new RuntimeException("Las promociones no tienen fechas validas.");
+
         if (tarjeta == null)
             throw new RuntimeException("La tarjeta para calcular el monto no puede ser vacia.");
+
+        if(productos == null)
+            throw new RuntimeException("Debe existir como minimo un producto en el carrito.");
 
         double precio = 0;
         for (Producto producto : this.productos) {
@@ -52,7 +54,10 @@ public class Carrito {
 
     }
 
-    public Venta pagar(Cliente cliente, MarcaPromocion marcaPromocion, TarjetaPromocion tarjetaPromocion, Tarjeta tarjeta) {
+    public Venta pagar(Cliente cliente, MarcaPromocion marcaPromocion, TarjetaPromocion tarjetaPromocion, Tarjeta tarjeta) throws RuntimeException{
+
+        if(productos == null)
+            throw new RuntimeException("Debe existir como minimo un producto en el carrito.");
 
         if (tarjeta != null) { //deberia ser la validacion del servicio
             return new Venta(cliente, tarjeta, EstadoVenta.COMPLETA, productos, calcularMontoCarrito(marcaPromocion, tarjetaPromocion, tarjeta));

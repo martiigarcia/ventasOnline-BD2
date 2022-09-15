@@ -1,9 +1,13 @@
 package modelo;
 
+import exceptions.NotNullNotEmptyException;
+
 import javax.persistence.*;
 import javax.persistence.Id;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +30,9 @@ public class Cliente {
 
     }
 
-    public Cliente(String nombre, String apellido, String dni, String email) {
+    public Cliente(String nombre, String apellido, String dni, String email) throws RuntimeException {
+
+
 
         if (!(nombre == null || nombre.isEmpty())){
             this.nombre = nombre;
@@ -105,6 +111,20 @@ public class Cliente {
     public boolean tarjetaPropia(Tarjeta tarjeta){
        return this.tarjetas.contains(tarjeta);
     }
+
+    public Map<String, Object> toMap() {
+        var map = new HashMap<String, Object>(
+                Map.of("nombre", nombre, "apellido", apellido));
+
+
+        //esto va con tarjetas no cursos
+        /*if (this.cursos != null && this.cursos.size() > 0) {
+            map.put("cursos", cursos.stream().map((e) -> e.toMap())
+                    .collect(Collectors.toList()));
+        }*/
+        return map;
+    }
+
 
     @Override
     public String toString() {

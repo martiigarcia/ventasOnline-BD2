@@ -11,7 +11,6 @@ public class Tienda {
 
     //se hacen dos listas para mantener el registro historico de cada tipo de promociones
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-
     private List<MarcaPromocion> marcaPromociones;
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
@@ -37,7 +36,7 @@ public class Tienda {
 
 
     //para actulizar las promociones
-    public void setMarcaPromocion(MarcaPromocion marcaPromocion) {
+    public void setMarcaPromocion(MarcaPromocion marcaPromocion) throws RuntimeException{
 
         if (marcaPromocion == null)
             throw new RuntimeException("La promocion no puede ser vacia");
@@ -55,7 +54,7 @@ public class Tienda {
 
     }
 
-    public void setTarjetaPromocion(TarjetaPromocion tarjetaPromocion) {
+    public void setTarjetaPromocion(TarjetaPromocion tarjetaPromocion) throws RuntimeException{
         if (tarjetaPromocion == null)
             throw new RuntimeException("La promocion no puede ser vacia");
 

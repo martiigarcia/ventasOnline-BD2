@@ -17,6 +17,12 @@ public class VentaService implements VentaServicio {
         try {
             tx.begin();
 
+            if(idCliente == null)
+                throw new RuntimeException("El cliente no puede ser nulo.");
+            if(productosLong.isEmpty())
+                throw new RuntimeException("El carrito no puede estar vacio.");
+            if(idTarjeta == null)
+                throw new RuntimeException("La tarjeta no debe ser vacia.");
 
             // validaciones:
             // - debe ser un cliente existente
@@ -75,6 +81,10 @@ public class VentaService implements VentaServicio {
         try {
 
             tx.begin();
+            if(productosLong.isEmpty())
+                throw new RuntimeException("El carrito no puede estar vacio.");
+            if(idTarjeta == null)
+                throw new RuntimeException("La tarjeta no debe ser vacia.");
 
             //Devuelve el monto total aplicando los descuentos al día de la fecha
             // validar que no llegue una lista vacía y la tarjeta exista

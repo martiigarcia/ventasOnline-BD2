@@ -1,28 +1,27 @@
 package modelo;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-@Entity
+@Embeddable
 public abstract class Promocion<P> {
-    @Id
-    @GeneratedValue
-    private long id;
+
     private boolean estado;
     private Date fechaInicio;
     private Date fechaFin;
     private P tipo;
 
-    public Promocion(boolean estado, LocalDate fechaInicio, LocalDate fechaFin, P tipo) {
+    public Promocion(boolean estado, LocalDate fechaInicio, LocalDate fechaFin, P tipo) throws RuntimeException{
         this.estado = estado;
         if (this.validarFecha(fechaInicio, fechaFin)) {
             this.fechaInicio = Date.from(fechaInicio.atStartOfDay(ZoneId.systemDefault()).toInstant());
             this.fechaFin = Date.from(fechaFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
         } else {
-            throw new RuntimeException("Las fechas de la promocion no son validas." + fechaInicio + "|||||" + fechaFin);
+            throw new RuntimeException("Las fechas de la promocion no son validas.");
         }
         this.tipo = tipo;
     }

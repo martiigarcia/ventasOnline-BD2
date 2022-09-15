@@ -8,7 +8,8 @@ import java.time.LocalDate;
 
 public class PromocionService implements PromocionServicio {
     @Override
-    public void crearDescuentoSobreTotal(String marcaTarjeta, LocalDate fechaDesde, LocalDate fechaHasta, float porcentaje) {
+    public void crearDescuentoSobreTotal(String marcaTarjeta, LocalDate fechaDesde, LocalDate fechaHasta,
+            float porcentaje) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("objectdb:myDbFile.odb");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -20,8 +21,6 @@ public class PromocionService implements PromocionServicio {
             Tienda tienda = em.find(Tienda.class, 13);
             tienda.setTarjetaPromocion(new TarjetaPromocion(true,
                     fechaDesde, fechaHasta, TipoTarjeta.valueOf((marcaTarjeta).toUpperCase())));
-            System.out.println(tienda);
-
 
             tx.commit();
 
@@ -56,8 +55,6 @@ public class PromocionService implements PromocionServicio {
 
             Tienda tienda = em.find(Tienda.class, 13);
             tienda.setMarcaPromocion(new MarcaPromocion(true, fechaDesde, fechaHasta, marca));
-            System.out.println(tienda);
-
 
             tx.commit();
 
@@ -84,7 +81,6 @@ public class PromocionService implements PromocionServicio {
             tx.begin();
             Tienda tienda = new Tienda();
             em.persist(tienda);
-
 
             tx.commit();
 
