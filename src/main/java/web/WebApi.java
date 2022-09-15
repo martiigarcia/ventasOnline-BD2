@@ -132,8 +132,7 @@ public class WebApi {
             String prod = parametros.get("productos").get(0);
             String tarj = parametros.get("tarjeta").get(0);
 
-            System.out.println(prod);
-            System.out.println(prod.isEmpty());
+           
             if (prod.isEmpty())
                 throw new RuntimeException("No se puede generar la compra sin productos seleccionados.");
             if (tarj.isEmpty())
